@@ -25,6 +25,7 @@ pipeline {
 		   input("Do you want to package and archive the results?")
 		   bat "mvn package"
            junit '**/target/surefire-reports/TEST-*.xml'
+           emailext body: 'Sample Body', subject: 'Sample Subject', to: 'trmreddy@gmail.com'
          }  
       }
    }
