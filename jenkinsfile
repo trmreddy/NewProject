@@ -22,16 +22,10 @@ pipeline {
       
       stage('Package') {
          steps {
-            bat "mvn package"
-         }
-             post {
-            // If Maven was able to run the tests, even if some of the test
-            // failed, record the test results and archive the jar file.
-            input("Do you want to archive the results?")
-            success {
-               junit '**/target/surefire-reports/TEST-*.xml'
-            }
-         }
+		   input("Do you want to package and archive the results?")
+		   bat "mvn package"
+           junit '**/target/surefire-reports/TEST-*.xml'
+         }  
       }
    }
 }
